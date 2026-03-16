@@ -111,7 +111,8 @@ suspend fun isOfficialSignature(): Boolean = withContext(Dispatchers.IO) {
         .add("${getKsuDaemonPath()} debug get-sign ${ksuApp.packageResourcePath}")
         .to(ArrayList<String>(), null).exec().out
     out.firstOrNull()?.trim()
-        .orEmpty() == "size: 0x377, hash: d3469712b6214462764a1d8d3e5cbe1d6819a0b629791b9f4101867821f1df64"
+        .orEmpty() == "size: 0x377, hash: d3469712b6214462764a1d8d3e5cbe1d6819a0b629791b9f4101867821f1df64" ||
+    out.firstOrNull()?.trim().orEmpty() == "size: 0x37b, hash: db2ee966981d8055cfe729f13b6d8b8358c8ab3531493ff0466a75a3ae28afa6"
 }
 
 suspend fun getFeatureStatus(feature: String): String = withContext(Dispatchers.IO) {
